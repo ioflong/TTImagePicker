@@ -20,5 +20,6 @@
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) TTImagePickerBar *bottomBar;
+@property (strong, nonatomic) NSNumber *totalSelectedCount;
 
 @end

@@ -8,12 +8,13 @@
 
 #import "TTAsset.h"
 
-static NSInteger totalSelectedCount = 0;
+//static NSInteger totalSelectedCount = 0;
 
 @implementation TTAsset
 
 - (void)dealloc
 {
+    [_totalSelectedCount release];
     [_asset release];
     [_maskImageView release];
     //
@@ -25,6 +26,7 @@ static NSInteger totalSelectedCount = 0;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+//        self.totalSelectedCount = [NSNumber numberWithInteger:0];
     }
     return self;
 }
@@ -62,19 +64,24 @@ static NSInteger totalSelectedCount = 0;
 
 - (void)thumbnailDidToggle
 {
-    if (totalSelectedCount >= 20 && !self.selected) {
-        return ;
-    }
-    
-    self.selected = !self.selected;
-    _maskImageView.hidden = !self.selected;
-    
-    if (self.selected) {
-        totalSelectedCount += 1;
-    } else {
-        totalSelectedCount -= 1;
-    }
-    
+    NSLog(@"thumbnailDidToggle");
+
+//    NSLog(@"before totalSelectedCount is %d",self.totalSelectedCount.integerValue);
+//    NSLog(@"!self.selected is %d",!self.selected);
+//    if ((self.totalSelectedCount.integerValue >= 20) && !self.selected) {
+//        NSLog(@"in return totalSelectedCount is %d",self.totalSelectedCount.integerValue);
+//        return ;
+//    }
+//    
+//    self.selected = !self.selected;
+//    _maskImageView.hidden = !self.selected;
+//    
+//    if (self.selected) {
+//        self.totalSelectedCount = [NSNumber numberWithInteger:(self.totalSelectedCount.integerValue + 1)];
+//    } else {
+//        self.totalSelectedCount = [NSNumber numberWithInteger:(self.totalSelectedCount.integerValue - 1)];
+//    }
+//    NSLog(@"totalSelectedCount is %d",self.totalSelectedCount.integerValue);
     if (self.delegate && [self.delegate respondsToSelector:@selector(thumbnailDidClick:)]) {
         [self.delegate performSelector:@selector(thumbnailDidClick:) withObject:self];
     }

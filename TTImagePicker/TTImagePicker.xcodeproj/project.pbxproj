@@ -329,11 +329,15 @@
 		96056AF31643C74500BDB921 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: gump law (AQ3WGH32A5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: gump law (AQ3WGH32A5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TTImagePicker/TTImagePicker-Prefix.pch";
 				INFOPLIST_FILE = "TTImagePicker/TTImagePicker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E4FF5DB0-2930-486D-AA32-823F2968D987";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E4FF5DB0-2930-486D-AA32-823F2968D987";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

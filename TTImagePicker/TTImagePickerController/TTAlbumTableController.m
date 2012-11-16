@@ -109,7 +109,8 @@
     NSString *groupName = [group valueForProperty:ALAssetsGroupPropertyName];
     if ([groupName isEqualToString:@"Camera Roll"]) {
         groupName = @"相机胶卷";
-    } else if ([groupName isEqualToString:@"My Photo Stream"]) {
+    }
+    else if ([groupName isEqualToString:@"My Photo Stream"]) {
         groupName = @"我的照片流";
     }
     

@@ -54,6 +54,7 @@
 - (void)updateTipLabel
 {
     NSInteger count = [self.selectedAssets count];
+//    NSLog(@"self.selectedAssets count is %d",[self.selectedAssets count]);
     self.tipLabel.text = [NSString stringWithFormat:@"已选择 %d 张，还可以选择 %d 张", count, 20-count];
 }
 

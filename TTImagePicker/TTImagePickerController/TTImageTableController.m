@@ -18,6 +18,7 @@
 
 - (void)dealloc
 {
+    [_totalSelectedCount release];
     [_assetsLibrary release];
     [_assetsGroup release];
     [_assetsArray release];
@@ -145,6 +146,7 @@
 
 - (void)doneButtonDidClick:(id)sender
 {
+//    NSLog(@"doneButtonDidClick");
     if ([self.bottomBar.selectedAssets count] <= 0) {
         return ;
     }
@@ -152,7 +154,7 @@
     // You can show loading here...
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray *imageInfoArray = [[[NSMutableArray alloc] init] autorelease];
+        NSMutableArray *imageInfoArray = [[[NSMutableArray alloc] init]autorelease];
         
         for(TTAsset *ttAsset in self.bottomBar.selectedAssets) {
             ALAsset *asset = ttAsset.asset;
@@ -173,6 +175,7 @@
                 [self.delegate respondsToSelector:@selector(didFinishPickingImages:)])
             {
                 [self.delegate performSelector:@selector(didFinishPickingImages:) withObject:imageInfoArray];
+                
             }
         });
     });
@@ -180,11 +183,31 @@
 
 - (void)thumbnailDidClick:(TTAsset *)ttAsset
 {
+//    NSLog(@"before totalSelectedCount is %d",self.totalSelectedCount.integerValue);
+//    NSLog(@"!self.selected is %d",!ttAsset.selected);
+    if ((self.totalSelectedCount.integerValue >= 20) && !ttAsset.selected) {
+//        NSLog(@"in return totalSelectedCount is %d",self.totalSelectedCount.integerValue);
+        return ;
+    }
+    
+    ttAsset.selected = !ttAsset.selected;
+    ttAsset.maskImageView.hidden = !ttAsset.selected;
+    
+    if (ttAsset.selected) {
+        self.totalSelectedCount = [NSNumber numberWithInteger:(self.totalSelectedCount.integerValue + 1)];
+    } else {
+        self.totalSelectedCount = [NSNumber numberWithInteger:(self.totalSelectedCount.integerValue - 1)];
+    }
+//    NSLog(@"totalSelectedCount is %d",self.totalSelectedCount.integerValue);
+    
+    
+//    NSLog(@"thumbnailDidClick");
     if (ttAsset.selected) {
         [self.bottomBar addAsset:ttAsset];
     } else {
         [self.bottomBar removeAsset:ttAsset];
     }
+//    NSLog(@"self.bottomBar.selectedAssets.count is %d",self.bottomBar.selectedAssets.count);
 }
 
 @end

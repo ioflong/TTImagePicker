@@ -21,6 +21,7 @@
 
 @property (assign, nonatomic) BOOL selected;
 @property (assign, nonatomic) id delegate;
+@property (strong, nonatomic) NSNumber *totalSelectedCount;
 
 - (id)initWithAsset:(ALAsset *)asset;
 
